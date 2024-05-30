@@ -33,7 +33,7 @@ import com.networkDisk.common.core.page.TableDataInfo;
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/filestorage/filestoragecollection")
+@RequestMapping("/filestoragecollection")
 public class NetworkdiskUserFilestorageCollectionController extends BaseController {
 
     private final INetworkdiskUserFilestorageCollectionService iNetworkdiskUserFilestorageCollectionService;

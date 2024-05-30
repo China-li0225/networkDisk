@@ -33,7 +33,7 @@ import com.networkDisk.common.core.page.TableDataInfo;
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/filestorage/userFilestorageRecyclebin")
+@RequestMapping("/userFilestorageRecyclebin")
 public class NetworkdiskUserFilestorageRecyclebinController extends BaseController {
 
     private final INetworkdiskUserFilestorageRecyclebinService iNetworkdiskUserFilestorageRecyclebinService;

@@ -139,8 +139,12 @@ public class NetworkdiskUserFilestorageController extends BaseController {
     @SaCheckPermission("filestorage:filestorage:remove")
     @Log(title = "用户文件存储", businessType = BusinessType.DELETE)
     @DeleteMapping("/{filestorageIds}")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空")
-                          @PathVariable Long[] filestorageIds) {
+    public R<Void> remove(@NotEmpty(message = "主键不能为空") @PathVariable Long[] filestorageIds) {
+        //加载回收站文件上限，超出后删除更旧的文件
+
+        //根据用户级别获取回收站天数上线
+        //数据写入回收站
+        //删除文件列表数据
         return toAjax(iNetworkdiskUserFilestorageService.deleteWithValidByIds(Arrays.asList(filestorageIds), true));
     }
 }
