@@ -21,14 +21,12 @@ import com.networkDisk.common.helper.LoginHelper;
 import com.networkDisk.common.utils.StreamUtils;
 import com.networkDisk.common.utils.StringUtils;
 import com.networkDisk.common.utils.poi.ExcelUtil;
+import com.networkDisk.system.domain.SysGroup;
 import com.networkDisk.system.domain.SysPost;
 import com.networkDisk.system.domain.vo.SysUserExportVo;
 import com.networkDisk.system.domain.vo.SysUserImportVo;
 import com.networkDisk.system.listener.SysUserImportListener;
-import com.networkDisk.system.service.ISysDeptService;
-import com.networkDisk.system.service.ISysPostService;
-import com.networkDisk.system.service.ISysRoleService;
-import com.networkDisk.system.service.ISysUserService;
+import com.networkDisk.system.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -56,6 +54,7 @@ public class SysUserController extends BaseController {
     private final ISysRoleService roleService;
     private final ISysPostService postService;
     private final ISysDeptService deptService;
+    private final ISysGroupService groupService;
 
     /**
      * 获取用户列表
@@ -122,14 +121,20 @@ public class SysUserController extends BaseController {
         role.setStatus(UserConstants.ROLE_NORMAL);
         SysPost post = new SysPost();
         post.setStatus(UserConstants.POST_NORMAL);
+        SysGroup group = new SysGroup();
+        group.setStatus(UserConstants.GROUP_NORMAL);
         List<SysRole> roles = roleService.selectRoleList(role);
+        List<SysGroup> groups = groupService.selectGroupList(group);
+
         ajax.put("roles", LoginHelper.isAdmin(userId) ? roles : StreamUtils.filter(roles, r -> !r.isAdmin()));
+        ajax.put("groups", groups);
         ajax.put("posts", postService.selectPostList(post));
         if (ObjectUtil.isNotNull(userId)) {
             SysUser sysUser = userService.selectUserById(userId);
             ajax.put("user", sysUser);
             ajax.put("postIds", postService.selectPostListByUserId(userId));
             ajax.put("roleIds", StreamUtils.toList(sysUser.getRoles(), SysRole::getRoleId));
+            ajax.put("groupIds", groupService.selectGroupListByUserId(userId));
         }
         return R.ok(ajax);
     }
@@ -149,7 +154,7 @@ public class SysUserController extends BaseController {
         } else if (StringUtils.isNotEmpty(user.getEmail()) && !userService.checkEmailUnique(user)) {
             return R.fail("新增用户'" + user.getUserName() + "'失败，邮箱账号已存在");
         }
-        user.setPassword(BCrypt.hashpw(user.getPassword()));
+        user.setPassword(BCrypt.hashpw(user.getPassword()));//密码加密
         return toAjax(userService.insertUser(user));
     }
 

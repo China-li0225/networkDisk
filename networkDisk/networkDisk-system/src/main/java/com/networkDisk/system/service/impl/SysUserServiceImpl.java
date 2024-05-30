@@ -23,6 +23,7 @@ import com.networkDisk.common.helper.LoginHelper;
 import com.networkDisk.common.utils.StreamUtils;
 import com.networkDisk.common.utils.StringUtils;
 import com.networkDisk.system.domain.SysPost;
+import com.networkDisk.system.domain.SysUserGroup;
 import com.networkDisk.system.domain.SysUserPost;
 import com.networkDisk.system.domain.SysUserRole;
 import com.networkDisk.system.mapper.*;
@@ -53,6 +54,7 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     private final SysPostMapper postMapper;
     private final SysUserRoleMapper userRoleMapper;
     private final SysUserPostMapper userPostMapper;
+    private final SysUserGroupMapper userGroupMapper;
 
     @Override
     public TableDataInfo<SysUser> selectPageUserList(SysUser user, PageQuery pageQuery) {
@@ -274,8 +276,10 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
         int rows = baseMapper.insert(user);
         // 新增用户岗位关联
         insertUserPost(user);
-        // 新增用户与角色管理
+        // 新增用户与角色关联
         insertUserRole(user);
+        // 新增用户与用户组关联
+        insertUserGroup(user);
         return rows;
     }
 
@@ -400,6 +404,15 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     }
 
     /**
+     * 新增用户用户组信息
+     *
+     * @param user 用户对象
+     */
+    public void insertUserGroup(SysUser user) {
+        this.insertUserGroup(user.getUserId(), user.getUserGroupIds());
+    }
+
+    /**
      * 新增用户岗位信息
      *
      * @param user 用户对象
@@ -434,6 +447,25 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
                 return ur;
             });
             userRoleMapper.insertBatch(list);
+        }
+    }
+
+    /**
+     * 新增用户用户组信息
+     *
+     * @param userId  用户ID
+     * @param roleIds 角色组
+     */
+    public void insertUserGroup(Long userId, Long[] groupIds) {
+        if (ArrayUtil.isNotEmpty(groupIds)) {
+            // 新增用户与角色管理
+            List<SysUserGroup> list = StreamUtils.toList(Arrays.asList(groupIds), groupId -> {
+                SysUserGroup ur = new SysUserGroup();
+                ur.setUserId(userId);
+                ur.setGroupId(groupId);
+                return ur;
+            });
+            userGroupMapper.insertBatch(list);
         }
     }
 

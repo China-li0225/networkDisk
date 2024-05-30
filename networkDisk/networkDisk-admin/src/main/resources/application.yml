@@ -45,7 +45,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.networkdisk: @logging.level@
+    com.networkDisk: @logging.level@
     org.springframework: warn
   config: classpath:logback-plus.xml
 
@@ -142,11 +142,11 @@ security:
 mybatis-plus:
   # 不支持多包, 如有需要可在注解配置 或 提升扫包等级
   # 例如 com.**.**.mapper
-  mapperPackage: com.networkdisk.**.mapper
+  mapperPackage: com.networkDisk.**.mapper
   # 对应的 XML 文件位置
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.networkdisk.**.domain
+  typeAliasesPackage: com.networkDisk.**.domain
   # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
   checkConfigLocation: false
   configuration:
@@ -224,11 +224,11 @@ springdoc:
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
     - group: 1.演示模块
-      packages-to-scan: com.networkdisk.demo
+      packages-to-scan: com.networkDisk.demo
     - group: 2.系统模块
-      packages-to-scan: com.networkdisk.web
+      packages-to-scan: com.networkDisk.web
     - group: 3.代码生成模块
-      packages-to-scan: com.networkdisk.generator
+      packages-to-scan: com.networkDisk.generator
 
 # 防止XSS攻击
 xss:

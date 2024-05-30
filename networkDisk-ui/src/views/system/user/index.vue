@@ -294,6 +294,19 @@
               </el-select>
             </el-form-item>
           </el-col>
+          <el-col :span="12">
+            <el-form-item label="用户组">
+              <el-select v-model="form.groupIds" multiple placeholder="请选择用户组">
+                <el-option
+                  v-for="item in groupOptions"
+                  :key="item.groupId"
+                  :label="item.groupName"
+                  :value="item.groupId"
+                  :disabled="item.status == 1"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
         </el-row>
         <el-row>
           <el-col :span="24">
@@ -383,6 +396,8 @@ export default {
       postOptions: [],
       // 角色选项
       roleOptions: [],
+      // 用户组选项
+      groupOptions: [],
       // 表单参数
       form: {},
       defaultProps: {
@@ -523,7 +538,8 @@ export default {
         status: "0",
         remark: undefined,
         postIds: [],
-        roleIds: []
+        roleIds: [],
+        groupIds: []
       };
       this.resetForm("form");
     },
@@ -565,6 +581,7 @@ export default {
       getUser().then(response => {
         this.postOptions = response.data.posts;
         this.roleOptions = response.data.roles;
+        this.groupOptions = response.data.groups;
         this.open = true;
         this.title = "添加用户";
         this.form.password = this.initPassword;
@@ -580,6 +597,7 @@ export default {
         this.roleOptions = response.data.roles;
         this.$set(this.form, "postIds", response.data.postIds);
         this.$set(this.form, "roleIds", response.data.roleIds);
+        this.$set(this.form, "groupIds", response.data.groupIds);
         this.open = true;
         this.title = "修改用户";
         this.form.password = "";

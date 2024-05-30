@@ -1,78 +1,57 @@
 package com.networkDisk.system.domain;
 
-import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
-import com.alibaba.excel.annotation.ExcelProperty;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.networkDisk.common.annotation.ExcelDictFormat;
-import com.networkDisk.common.convert.ExcelDictConvert;
-import com.networkDisk.common.core.domain.BaseEntity;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import java.io.Serializable;
+import java.util.Date;
+import java.math.BigDecimal;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import com.networkDisk.common.core.domain.BaseEntity;
+import lombok.NoArgsConstructor;
 
 /**
- * 用户组 sys_group
+ * 用户组信息对象 sys_group
  *
- * @author Lion Li
+ * @author networkdisk
+ * @date 2024-05-29
  */
-
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_group")
-@ExcelIgnoreUnannotated
 public class SysGroup extends BaseEntity {
 
+    private static final long serialVersionUID=1L;
+
     /**
-     * 用户组序号
+     * 用户组ID
      */
-    @ExcelProperty(value = "岗位序号")
     @TableId(value = "group_id")
     private Long groupId;
-
     /**
      * 用户组编码
      */
-    @ExcelProperty(value = "岗位编码")
-    @NotBlank(message = "岗位编码不能为空")
-    @Size(min = 0, max = 64, message = "岗位编码长度不能超过{max}个字符")
     private String groupCode;
-
     /**
      * 用户组名称
      */
-    @ExcelProperty(value = "岗位名称")
-    @NotBlank(message = "岗位名称不能为空")
-    @Size(min = 0, max = 50, message = "岗位名称长度不能超过{max}个字符")
     private String groupName;
-
     /**
-     * 用户组排序
+     * 显示顺序
      */
-    @ExcelProperty(value = "岗位排序")
-    @NotNull(message = "显示顺序不能为空")
-    private Integer groupSort;
-
+    private Long groupSort;
+    /**
+     * 用户组等级
+     */
+    private Long groupLevel;
     /**
      * 状态（0正常 1停用）
      */
-    @ExcelProperty(value = "状态", converter = ExcelDictConvert.class)
-    @ExcelDictFormat(dictType = "sys_normal_disable")
     private String status;
-
     /**
      * 备注
      */
     private String remark;
-
-    /**
-     * 用户是否存在此岗位标识 默认不存在
-     */
-    @TableField(exist = false)
-    private boolean flag = false;
 
 }

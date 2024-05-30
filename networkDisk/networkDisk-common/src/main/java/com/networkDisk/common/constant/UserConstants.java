@@ -63,6 +63,16 @@ public interface UserConstants {
     String POST_DISABLE = "1";
 
     /**
+     * 用户组正常状态
+     */
+    String GROUP_NORMAL = "0";
+
+    /**
+     * 用户组停用状态
+     */
+    String GROUP_DISABLE = "1";
+
+    /**
      * 字典正常状态
      */
     String DICT_NORMAL = "0";
