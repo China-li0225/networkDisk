@@ -1,12 +1,19 @@
 package com.networkDisk.filestorage.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.networkDisk.common.utils.BeanCopyUtils;
+import com.networkDisk.system.domain.vo.SysOssVo;
+import com.networkDisk.system.service.ISysOssService;
 import lombok.RequiredArgsConstructor;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.*;
 import cn.dev33.satoken.annotation.SaCheckPermission;
+import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.annotation.Validated;
 import com.networkDisk.common.annotation.RepeatSubmit;
@@ -23,6 +30,7 @@ import com.networkDisk.filestorage.domain.vo.NetworkdiskUserFilestorageVo;
 import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageBo;
 import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageService;
 import com.networkDisk.common.core.page.TableDataInfo;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 用户文件存储
@@ -37,6 +45,7 @@ import com.networkDisk.common.core.page.TableDataInfo;
 public class NetworkdiskUserFilestorageController extends BaseController {
 
     private final INetworkdiskUserFilestorageService iNetworkdiskUserFilestorageService;
+    private final ISysOssService iSysOssService;
 
     /**
      * 查询用户文件存储列表
@@ -76,9 +85,39 @@ public class NetworkdiskUserFilestorageController extends BaseController {
     @SaCheckPermission("filestorage:filestorage:add")
     @Log(title = "用户文件存储", businessType = BusinessType.INSERT)
     @RepeatSubmit()
-    @PostMapping()
-    public R<Void> add(@Validated(AddGroup.class) @RequestBody NetworkdiskUserFilestorageBo bo) {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Transactional(rollbackFor = Exception.class)
+    public R<Void> add(@RequestPart("file") MultipartFile file) {
+        //iSysOssService
+        if (ObjectUtil.isNull(file)) {
+            return R.fail("上传文件不能为空");
+        }
+        SysOssVo oss = iSysOssService.upload(file);
+        NetworkdiskUserFilestorageBo bo = BeanCopyUtils.copy(oss,NetworkdiskUserFilestorageBo.class);
         return toAjax(iNetworkdiskUserFilestorageService.insertByBo(bo));
+    }
+
+    /**
+     * 新增多个用户文件存储
+     */
+    @SaCheckPermission("filestorage:filestorage:add")
+    @Log(title = "用户文件存储", businessType = BusinessType.INSERT)
+    @RepeatSubmit()
+    @PostMapping(value = "/uploads",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Transactional(rollbackFor = Exception.class)
+    public R<Void> add(@RequestPart("files") MultipartFile[] files) {
+        List<NetworkdiskUserFilestorageBo> list = new ArrayList<>();
+        //iSysOssService
+        for (MultipartFile file: files){
+            if (ObjectUtil.isNull(file)) {
+                return R.fail("上传文件不能为空");
+            }
+            SysOssVo oss = iSysOssService.upload(file);
+            NetworkdiskUserFilestorageBo bo = BeanCopyUtils.copy(oss,NetworkdiskUserFilestorageBo.class);
+            iNetworkdiskUserFilestorageService.insertByBo(bo);
+            list.add(bo);
+        }
+        return toAjax(list);
     }
 
     /**

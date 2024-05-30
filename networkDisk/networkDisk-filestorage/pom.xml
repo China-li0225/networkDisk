@@ -168,6 +168,10 @@
             <groupId>com.networkDisk</groupId>
             <artifactId>networkdisk-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.networkDisk</groupId>
+            <artifactId>networkdisk-system</artifactId>
+        </dependency>
 
     </dependencies>
 

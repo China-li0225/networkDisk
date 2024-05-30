@@ -4,6 +4,9 @@ import com.networkDisk.common.core.domain.R;
 import com.networkDisk.common.core.domain.model.LoginUser;
 import com.networkDisk.common.helper.LoginHelper;
 import com.networkDisk.common.utils.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
+
+import java.util.List;
 
 /**
  * web层通用数据处理
@@ -30,6 +33,16 @@ public class BaseController {
      */
     protected R<Void> toAjax(boolean result) {
         return result ? R.ok() : R.fail();
+    }
+
+    /**
+     * 响应返回结果
+     *
+     * @param result 结果
+     * @return 操作结果
+     */
+    protected R toAjax(List result) {
+        return result.size()>0 ? R.ok(result) : R.fail();
     }
 
     /**

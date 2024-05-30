@@ -25,9 +25,9 @@
         <module name="networkdisk-job" />
         <module name="networkdisk-monitor-admin" />
         <module name="networkdisk-framework" />
-        <module name="networkdisk-sms" />
         <module name="networkdisk-admin" />
         <module name="networkDisk-filestorage" />
+        <module name="networkdisk-sms" />
         <module name="networkdisk-common" />
         <module name="networkdisk-demo" />
       </profile>
