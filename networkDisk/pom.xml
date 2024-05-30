@@ -314,6 +314,7 @@
                 <version>${networkdisk-vue-plus.version}</version>
             </dependency>
 
+
             <!-- demo模块 -->
             <dependency>
                 <groupId>com.networkDisk</groupId>
@@ -335,6 +336,7 @@
         <module>networkdisk-extend</module>
         <module>networkdisk-oss</module>
         <module>networkdisk-sms</module>
+        <module>networkDisk-filestorage</module>
     </modules>
     <packaging>pom</packaging>
 
