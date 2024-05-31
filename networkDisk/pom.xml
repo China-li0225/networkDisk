@@ -322,6 +322,13 @@
                 <version>${networkdisk-vue-plus.version}</version>
             </dependency>
 
+            <!-- 用户文件存储模块 -->
+            <dependency>
+                <groupId>com.networkDisk</groupId>
+                <artifactId>networkDisk-filestorage</artifactId>
+                <version>${networkdisk-vue-plus.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

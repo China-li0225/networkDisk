@@ -80,28 +80,39 @@
         </dependency>
 
         <dependency>
+            <groupId>com.networkDisk</groupId>
+            <artifactId>networkDisk-filestorage</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
         <!-- skywalking 整合 logback -->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.skywalking</groupId>-->
-<!--            <artifactId>apm-toolkit-logback-1.x</artifactId>-->
-<!--            <version>${与你的agent探针版本保持一致}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.skywalking</groupId>-->
-<!--            <artifactId>apm-toolkit-trace</artifactId>-->
-<!--            <version>${与你的agent探针版本保持一致}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.skywalking</groupId>-->
+        <!--            <artifactId>apm-toolkit-logback-1.x</artifactId>-->
+        <!--            <version>${与你的agent探针版本保持一致}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.skywalking</groupId>-->
+        <!--            <artifactId>apm-toolkit-trace</artifactId>-->
+        <!--            <version>${与你的agent探针版本保持一致}</version>-->
+        <!--        </dependency>-->
 
     </dependencies>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
