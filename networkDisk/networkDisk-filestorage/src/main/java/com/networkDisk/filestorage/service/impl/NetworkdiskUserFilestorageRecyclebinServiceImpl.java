@@ -152,7 +152,7 @@ public class NetworkdiskUserFilestorageRecyclebinServiceImpl implements INetwork
     }
 
     @Override
-    public List<NetworkdiskUserFilestorageRecyclebin> gettimeoutFile() {
+    public List<Long> gettimeoutFile() {
         return baseMapper.gettimeoutFile();
     }
 }

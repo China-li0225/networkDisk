@@ -379,7 +379,7 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('filestorage/userFilestorageRecyclebin/export', {
+      this.download('userFilestorageRecyclebin/export', {
         ...this.queryParams
       }, `userFilestorageRecyclebin_${new Date().getTime()}.xlsx`)
     }

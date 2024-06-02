@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime" column="update_time"/>
         <result property="updateBy" column="update_by"/>
     </resultMap>
-    <select id="gettimeoutFile" resultType="com.networkDisk.filestorage.domain.NetworkdiskUserFilestorageRecyclebin">
-        select * from networkdisk_user_filestorage_recyclebin where
+    <select id="gettimeoutFile" resultType="java.lang.Long">
+        select expiration_id from networkdisk_user_filestorage_recyclebin n where DATE_ADD(n.create_time,interval n.file_expiration_date day) &lt;= NOW()
     </select>
 
 

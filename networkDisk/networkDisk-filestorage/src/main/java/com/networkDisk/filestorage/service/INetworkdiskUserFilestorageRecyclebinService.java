@@ -54,5 +54,5 @@ public interface INetworkdiskUserFilestorageRecyclebinService {
 
     boolean removeToFilestorage(Long[] expirationIds);
 
-    List<NetworkdiskUserFilestorageRecyclebin> gettimeoutFile();
+    List<Long> gettimeoutFile();
 }

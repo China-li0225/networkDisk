@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询用户文件存储列表
 export function listUserFilestorageRecyclebin(query) {
   return request({
-    url: '/filestorage/userFilestorageRecyclebin/list',
+    url: '/userFilestorageRecyclebin/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listUserFilestorageRecyclebin(query) {
 // 查询用户文件存储详细
 export function getUserFilestorageRecyclebin(expirationId) {
   return request({
-    url: '/filestorage/userFilestorageRecyclebin/' + expirationId,
+    url: '/userFilestorageRecyclebin/' + expirationId,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getUserFilestorageRecyclebin(expirationId) {
 // 新增用户文件存储
 export function addUserFilestorageRecyclebin(data) {
   return request({
-    url: '/filestorage/userFilestorageRecyclebin',
+    url: '/userFilestorageRecyclebin',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addUserFilestorageRecyclebin(data) {
 // 修改用户文件存储
 export function updateUserFilestorageRecyclebin(data) {
   return request({
-    url: '/filestorage/userFilestorageRecyclebin',
+    url: '/userFilestorageRecyclebin',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateUserFilestorageRecyclebin(data) {
 // 删除用户文件存储
 export function delUserFilestorageRecyclebin(expirationId) {
   return request({
-    url: '/filestorage/userFilestorageRecyclebin/' + expirationId,
+    url: '/userFilestorageRecyclebin/' + expirationId,
     method: 'delete'
   })
 }

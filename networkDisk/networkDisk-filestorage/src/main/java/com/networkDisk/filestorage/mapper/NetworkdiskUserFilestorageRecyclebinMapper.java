@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface NetworkdiskUserFilestorageRecyclebinMapper extends BaseMapperPlus<NetworkdiskUserFilestorageRecyclebinMapper, NetworkdiskUserFilestorageRecyclebin, NetworkdiskUserFilestorageRecyclebinVo> {
 
-    List<NetworkdiskUserFilestorageRecyclebin> gettimeoutFile();
+    List<Long> gettimeoutFile();
 }
