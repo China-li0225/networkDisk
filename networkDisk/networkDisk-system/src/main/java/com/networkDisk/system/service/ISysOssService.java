@@ -29,7 +29,21 @@ public interface ISysOssService {
 
     SysOssVo upload(File file);
 
+    /**
+     * 系统文件下载
+     * @param ossId
+     * @param response
+     * @throws IOException
+     */
     void download(Long ossId, HttpServletResponse response) throws IOException;
+
+    /**
+     * 用户文件下载
+     * @param ossId
+     * @param response
+     * @throws IOException
+     */
+    void downloadByUser(Long ossId, HttpServletResponse response,String fileName) throws IOException;
 
     Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid);
 

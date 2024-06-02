@@ -228,7 +228,7 @@ import {
   getFilestorage,
   delFilestorage,
   addFilestorage,
-  updateFilestorage
+  updateFilestorage, fileDownload
 } from "@/api/filestorage/filestorage";
 import UserUpdataFile from "@/components/FileUpload/userUpdataFile.vue";
 
@@ -449,13 +449,14 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('filestorage/filestorage/export', {
+      this.download('filestorage/export', {
         ...this.queryParams
       }, `filestorage_${new Date().getTime()}.xlsx`)
     },
     /** 单个下载按钮 */
     downloadOne(row) {
-      this.download('filestorage/filestorage/downloadOne?filestorageId=' + row.filestorageId, `filestorage_${new Date().getTime()}.xlsx`)
+      this.$download.userFileDownload(row.filestorageId)
+      // fileDownload(row)
     }
   }
 };

@@ -5,6 +5,8 @@ import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageBo;
 import com.networkDisk.common.core.page.TableDataInfo;
 import com.networkDisk.common.core.domain.PageQuery;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,4 +47,6 @@ public interface INetworkdiskUserFilestorageService {
      * 校验并批量删除用户文件存储信息
      */
     Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid);
+
+    void fileDownload(Long filestorageId, HttpServletResponse response) throws IOException;
 }

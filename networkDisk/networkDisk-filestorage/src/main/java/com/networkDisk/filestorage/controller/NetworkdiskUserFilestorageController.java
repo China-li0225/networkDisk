@@ -1,5 +1,6 @@
 package com.networkDisk.filestorage.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -65,6 +66,13 @@ public class NetworkdiskUserFilestorageController extends BaseController {
     public void export(NetworkdiskUserFilestorageBo bo, HttpServletResponse response) {
         List<NetworkdiskUserFilestorageVo> list = iNetworkdiskUserFilestorageService.queryList(bo);
         ExcelUtil.exportExcel(list, "用户文件存储", NetworkdiskUserFilestorageVo.class, response);
+    }
+
+    @SaCheckPermission("filestorage:filestorage:export")
+//    @Log(title = "用户文件存储", businessType = BusinessType.EXPORT)
+    @GetMapping("/fileDownload/{filestorageId}")
+    public void fileDownload(@PathVariable("filestorageId") Long filestorageId, HttpServletResponse response) throws IOException {
+        iNetworkdiskUserFilestorageService.fileDownload(filestorageId, response);
     }
 
     /**

@@ -133,6 +133,24 @@ public class SysOssServiceImpl implements ISysOssService, OssService {
     }
 
     @Override
+    public void downloadByUser(Long ossId, HttpServletResponse response, String fileName) throws IOException {
+        SysOssVo sysOss = SpringUtils.getAopProxy(this).getById(ossId);
+        if (ObjectUtil.isNull(sysOss)) {
+            throw new ServiceException("文件数据不存在!");
+        }
+        FileUtils.setAttachmentResponseHeader(response, fileName);
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE + "; charset=UTF-8");
+        OssClient storage = OssFactory.instance(sysOss.getService());
+        try(InputStream inputStream = storage.getObjectContent(sysOss.getUrl())) {
+            int available = inputStream.available();
+            IoUtil.copy(inputStream, response.getOutputStream(), available);
+            response.setContentLength(available);
+        } catch (Exception e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
     public SysOssVo upload(MultipartFile file) {
         SysOss oss = new SysOss();
 

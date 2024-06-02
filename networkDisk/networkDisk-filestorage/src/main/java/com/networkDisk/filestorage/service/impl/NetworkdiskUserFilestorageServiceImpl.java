@@ -9,6 +9,7 @@ import com.networkDisk.common.core.domain.PageQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.networkDisk.system.service.ISysOssService;
 import com.networkDisk.system.service.ISysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ import com.networkDisk.filestorage.domain.NetworkdiskUserFilestorage;
 import com.networkDisk.filestorage.mapper.NetworkdiskUserFilestorageMapper;
 import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
@@ -34,6 +37,7 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
 
     private final NetworkdiskUserFilestorageMapper baseMapper;
     private final ISysUserService iSysUserService;
+    private final ISysOssService iSysOssService;
 
     /**
      * 查询用户文件存储
@@ -115,5 +119,11 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
             //TODO 做一些业务上的校验,判断是否需要校验
         }
         return baseMapper.deleteBatchIds(ids) > 0;
+    }
+
+    @Override
+    public void fileDownload(Long filestorageId, HttpServletResponse response) throws IOException {
+        NetworkdiskUserFilestorageVo vo = baseMapper.selectVoById(filestorageId);
+        iSysOssService.downloadByUser(vo.getOssId(),response,vo.getOriginalName());
     }
 }
