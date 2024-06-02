@@ -7,8 +7,10 @@ import com.networkDisk.common.core.domain.PageQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.networkDisk.filestorage.domain.NetworkdiskUserFilestorage;
 import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageBo;
 import com.networkDisk.filestorage.domain.vo.NetworkdiskUserFilestorageVo;
+import com.networkDisk.filestorage.mapper.NetworkdiskUserFilestorageMapper;
 import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,8 @@ import java.util.Collection;
 public class NetworkdiskUserFilestorageRecyclebinServiceImpl implements INetworkdiskUserFilestorageRecyclebinService {
 
     private final NetworkdiskUserFilestorageRecyclebinMapper baseMapper;
-    private final INetworkdiskUserFilestorageService iNetworkdiskUserFilestorageService;
+//    private final INetworkdiskUserFilestorageService iNetworkdiskUserFilestorageService;
+    private final NetworkdiskUserFilestorageMapper networkdiskUserFilestorageMapper;
 
     /**
      * 查询用户文件存储
@@ -141,10 +144,15 @@ public class NetworkdiskUserFilestorageRecyclebinServiceImpl implements INetwork
         //数据移动到用户文件列表
         for (Long expirationId: expirationIds){
             NetworkdiskUserFilestorageRecyclebin vo = baseMapper.selectById(expirationId);
-            NetworkdiskUserFilestorageBo bo = BeanUtil.toBean(vo,NetworkdiskUserFilestorageBo.class);
-            iNetworkdiskUserFilestorageService.insertByBo(bo);
+            NetworkdiskUserFilestorage filestorage = BeanUtil.toBean(vo,NetworkdiskUserFilestorage.class);
+            networkdiskUserFilestorageMapper.insert(filestorage);
         }
         //删除回收站记录
         return baseMapper.deleteBatchIds(Arrays.asList(expirationIds)) > 0;
+    }
+
+    @Override
+    public List<NetworkdiskUserFilestorageRecyclebin> gettimeoutFile() {
+        return baseMapper.gettimeoutFile();
     }
 }

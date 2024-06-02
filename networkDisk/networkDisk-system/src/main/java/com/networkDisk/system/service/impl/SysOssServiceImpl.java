@@ -155,8 +155,8 @@ public class SysOssServiceImpl implements ISysOssService, OssService {
         SysOss oss = new SysOss();
 
         String originalfileName = file.getOriginalFilename();
-        String suffix = StringUtils.substring(originalfileName, originalfileName.lastIndexOf("."), originalfileName.length());
-        Long size = (long) file.getSize()/1024;
+        String suffix = ( StringUtils.substring(originalfileName, originalfileName.lastIndexOf("."), originalfileName.length()));
+        Double size = ((double) file.getSize())/1024;
 
         OssClient storage = OssFactory.instance();
         UploadResult uploadResult;

@@ -4,6 +4,8 @@ import com.networkDisk.filestorage.domain.NetworkdiskUserFilestorageRecyclebin;
 import com.networkDisk.filestorage.domain.vo.NetworkdiskUserFilestorageRecyclebinVo;
 import com.networkDisk.common.core.mapper.BaseMapperPlus;
 
+import java.util.List;
+
 /**
  * 用户文件存储Mapper接口
  *
@@ -12,4 +14,5 @@ import com.networkDisk.common.core.mapper.BaseMapperPlus;
  */
 public interface NetworkdiskUserFilestorageRecyclebinMapper extends BaseMapperPlus<NetworkdiskUserFilestorageRecyclebinMapper, NetworkdiskUserFilestorageRecyclebin, NetworkdiskUserFilestorageRecyclebinVo> {
 
+    List<NetworkdiskUserFilestorageRecyclebin> gettimeoutFile();
 }

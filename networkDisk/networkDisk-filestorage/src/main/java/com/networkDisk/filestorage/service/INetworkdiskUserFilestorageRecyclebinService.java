@@ -53,4 +53,6 @@ public interface INetworkdiskUserFilestorageRecyclebinService {
     Boolean deleteByWrapper(LambdaQueryWrapper<NetworkdiskUserFilestorageRecyclebin> wrapper);
 
     boolean removeToFilestorage(Long[] expirationIds);
+
+    List<NetworkdiskUserFilestorageRecyclebin> gettimeoutFile();
 }
