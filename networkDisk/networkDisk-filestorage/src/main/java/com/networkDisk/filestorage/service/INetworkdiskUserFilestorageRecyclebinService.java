@@ -1,5 +1,7 @@
 package com.networkDisk.filestorage.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.networkDisk.filestorage.domain.NetworkdiskUserFilestorageRecyclebin;
 import com.networkDisk.filestorage.domain.vo.NetworkdiskUserFilestorageRecyclebinVo;
 import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageRecyclebinBo;
 import com.networkDisk.common.core.page.TableDataInfo;
@@ -45,4 +47,10 @@ public interface INetworkdiskUserFilestorageRecyclebinService {
      * 校验并批量删除用户文件存储信息
      */
     Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid);
+
+    List<NetworkdiskUserFilestorageRecyclebin> queryByuserId(Long userId);
+
+    Boolean deleteByWrapper(LambdaQueryWrapper<NetworkdiskUserFilestorageRecyclebin> wrapper);
+
+    boolean removeToFilestorage(Long[] expirationIds);
 }

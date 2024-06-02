@@ -49,7 +49,7 @@ public class NetworkdiskUserFilestorageBo extends BaseEntity {
      * 文件大小
      */
     @NotBlank(message = "文件大小", groups = { AddGroup.class})
-    private Long fileSize;
+    private Double fileSize;
 
     /**
      * 原名

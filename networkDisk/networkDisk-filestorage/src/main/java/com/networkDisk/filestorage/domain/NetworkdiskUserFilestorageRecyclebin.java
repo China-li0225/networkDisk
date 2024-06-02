@@ -1,6 +1,7 @@
 package com.networkDisk.filestorage.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.networkDisk.common.core.validate.AddGroup;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.io.Serializable;
@@ -8,6 +9,8 @@ import java.util.Date;
 import java.math.BigDecimal;
 
 import com.networkDisk.common.core.domain.BaseEntity;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * 用户文件存储对象 networkdisk_user_filestorage_recyclebin
@@ -51,6 +54,10 @@ public class NetworkdiskUserFilestorageRecyclebin extends BaseEntity {
      * 文件后缀名
      */
     private String fileSuffix;
+    /**
+     * 文件大小
+     */
+    private Double fileSize;
     /**
      * URL地址
      */

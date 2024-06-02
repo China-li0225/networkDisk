@@ -1,5 +1,6 @@
 package com.networkDisk.filestorage.domain.bo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.networkDisk.common.core.validate.AddGroup;
 import com.networkDisk.common.core.validate.EditGroup;
 import lombok.Data;
@@ -62,6 +63,12 @@ public class NetworkdiskUserFilestorageRecyclebinBo extends BaseEntity {
      */
     @NotBlank(message = "文件后缀名不能为空", groups = { AddGroup.class, EditGroup.class })
     private String fileSuffix;
+
+    /**
+     * 文件大小
+     */
+    @NotBlank(message = "文件后缀名不能为空", groups = { AddGroup.class})
+    private Double fileSize;
 
     /**
      * URL地址

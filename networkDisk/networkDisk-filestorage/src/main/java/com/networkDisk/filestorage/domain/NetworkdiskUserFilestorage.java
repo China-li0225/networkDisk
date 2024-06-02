@@ -50,7 +50,7 @@ public class NetworkdiskUserFilestorage extends BaseEntity {
     /**
      * 文件后缀名
      */
-    private Long fileSize;
+    private Double fileSize;
     /**
      * URL地址
      */

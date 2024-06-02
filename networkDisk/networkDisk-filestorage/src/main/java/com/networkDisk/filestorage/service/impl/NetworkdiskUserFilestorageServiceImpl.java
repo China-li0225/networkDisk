@@ -3,12 +3,16 @@ package com.networkDisk.filestorage.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import com.google.api.client.util.SecurityUtils;
+import com.networkDisk.common.core.domain.entity.SysUser;
 import com.networkDisk.common.utils.StringUtils;
 import com.networkDisk.common.core.page.TableDataInfo;
 import com.networkDisk.common.core.domain.PageQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.networkDisk.filestorage.domain.NetworkdiskUserFilestorageRecyclebin;
+import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageRecyclebinBo;
+import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageRecyclebinService;
 import com.networkDisk.system.service.ISysOssService;
 import com.networkDisk.system.service.ISysUserService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +25,7 @@ import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
@@ -38,6 +43,7 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
     private final NetworkdiskUserFilestorageMapper baseMapper;
     private final ISysUserService iSysUserService;
     private final ISysOssService iSysOssService;
+    private final INetworkdiskUserFilestorageRecyclebinService iNetworkdiskUserFilestorageRecyclebinService;
 
     /**
      * 查询用户文件存储
@@ -125,5 +131,32 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
     public void fileDownload(Long filestorageId, HttpServletResponse response) throws IOException {
         NetworkdiskUserFilestorageVo vo = baseMapper.selectVoById(filestorageId);
         iSysOssService.downloadByUser(vo.getOssId(),response,vo.getOriginalName());
+    }
+
+    @Override
+    public Boolean removeToRecyclebin(Long[] filestorageIds) {
+        SysUser sysUser = iSysUserService.getSysUser();//加载用户信息
+        //加载回收站文件容量上限，超出后删除更旧的文件
+        int fileSizeMax = 100;
+        //根据用户级别获取回收站天数上线
+        int fileDayMax = 7;
+        //数据写入回收站
+        List<NetworkdiskUserFilestorageRecyclebin> recyclebin =
+            iNetworkdiskUserFilestorageRecyclebinService.queryByuserId(sysUser.getUserId());
+        if ((recyclebin.size() + filestorageIds.length) > fileSizeMax){
+            int i = (recyclebin.size() + filestorageIds.length) - fileSizeMax;
+            LambdaQueryWrapper<NetworkdiskUserFilestorageRecyclebin> wrapper = new LambdaQueryWrapper<>();
+            wrapper.orderByDesc(NetworkdiskUserFilestorageRecyclebin::getCreateTime);
+            wrapper.last(" limit " + i);
+            for (NetworkdiskUserFilestorageRecyclebin recyclebin1 :recyclebin){
+                iNetworkdiskUserFilestorageRecyclebinService.deleteByWrapper(wrapper);
+            }
+        }
+        for (long filestorageId:filestorageIds){
+            NetworkdiskUserFilestorageRecyclebinBo bo = BeanUtil.toBean(baseMapper.selectVoById(filestorageId), NetworkdiskUserFilestorageRecyclebinBo.class);
+            iNetworkdiskUserFilestorageRecyclebinService.insertByBo(bo);
+        }
+        //删除文件列表数据
+        return baseMapper.deleteBatchIds(Arrays.asList(filestorageIds)) > 0;
     }
 }

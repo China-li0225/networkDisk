@@ -93,7 +93,7 @@ public class NetworkdiskUserFilestorageRecyclebinController extends BaseControll
     }
 
     /**
-     * 删除用户文件存储
+     * 从回收站将文件移动到用户文件列表
      *
      * @param expirationIds 主键串
      */
@@ -101,6 +101,20 @@ public class NetworkdiskUserFilestorageRecyclebinController extends BaseControll
     @Log(title = "用户文件存储", businessType = BusinessType.DELETE)
     @DeleteMapping("/{expirationIds}")
     public R<Void> remove(@NotEmpty(message = "主键不能为空")
+                          @PathVariable Long[] expirationIds) {
+
+        return toAjax(iNetworkdiskUserFilestorageRecyclebinService.removeToFilestorage(expirationIds));
+    }
+
+    /**
+     * 删除用户文件存储
+     *
+     * @param expirationIds 主键串
+     */
+    @SaCheckPermission("filestorage:userFilestorageRecyclebin:remove")
+    @Log(title = "用户文件存储", businessType = BusinessType.DELETE)
+    @DeleteMapping("delete/{expirationIds}")
+    public R<Void> delete(@NotEmpty(message = "主键不能为空")
                           @PathVariable Long[] expirationIds) {
         return toAjax(iNetworkdiskUserFilestorageRecyclebinService.deleteWithValidByIds(Arrays.asList(expirationIds), true));
     }

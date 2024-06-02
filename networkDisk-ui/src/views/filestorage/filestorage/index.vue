@@ -438,10 +438,10 @@ export default {
       this.$modal.confirm('是否确认删除用户文件存储编号为"' + filestorageIds + '"的数据项？').then(() => {
         this.loading = true;
         return delFilestorage(filestorageIds);
-      }).then(() => {
+      }).then(res => {
         this.loading = false;
         this.getList();
-        this.$modal.msgSuccess("删除成功");
+        this.$modal.msgSuccess(res.data.msg);
       }).catch(() => {
       }).finally(() => {
         this.loading = false;

@@ -7,6 +7,9 @@ import com.networkDisk.common.core.domain.PageQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageBo;
+import com.networkDisk.filestorage.domain.vo.NetworkdiskUserFilestorageVo;
+import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageRecyclebinBo;
@@ -15,6 +18,7 @@ import com.networkDisk.filestorage.domain.NetworkdiskUserFilestorageRecyclebin;
 import com.networkDisk.filestorage.mapper.NetworkdiskUserFilestorageRecyclebinMapper;
 import com.networkDisk.filestorage.service.INetworkdiskUserFilestorageRecyclebinService;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
@@ -30,6 +34,7 @@ import java.util.Collection;
 public class NetworkdiskUserFilestorageRecyclebinServiceImpl implements INetworkdiskUserFilestorageRecyclebinService {
 
     private final NetworkdiskUserFilestorageRecyclebinMapper baseMapper;
+    private final INetworkdiskUserFilestorageService iNetworkdiskUserFilestorageService;
 
     /**
      * 查询用户文件存储
@@ -112,5 +117,34 @@ public class NetworkdiskUserFilestorageRecyclebinServiceImpl implements INetwork
             //TODO 做一些业务上的校验,判断是否需要校验
         }
         return baseMapper.deleteBatchIds(ids) > 0;
+    }
+
+    @Override
+    public List<NetworkdiskUserFilestorageRecyclebin> queryByuserId(Long userId) {
+        LambdaQueryWrapper<NetworkdiskUserFilestorageRecyclebin> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(NetworkdiskUserFilestorageRecyclebin::getUserId,userId);
+        return baseMapper.selectList(wrapper);
+    }
+
+    @Override
+    public Boolean deleteByWrapper(LambdaQueryWrapper<NetworkdiskUserFilestorageRecyclebin> wrapper) {
+        return baseMapper.delete(wrapper) > 0;
+    }
+
+    /**
+     * 从回收站将文件移动到用户文件列表
+     * @param expirationIds
+     * @return
+     */
+    @Override
+    public boolean removeToFilestorage(Long[] expirationIds) {
+        //数据移动到用户文件列表
+        for (Long expirationId: expirationIds){
+            NetworkdiskUserFilestorageRecyclebin vo = baseMapper.selectById(expirationId);
+            NetworkdiskUserFilestorageBo bo = BeanUtil.toBean(vo,NetworkdiskUserFilestorageBo.class);
+            iNetworkdiskUserFilestorageService.insertByBo(bo);
+        }
+        //删除回收站记录
+        return baseMapper.deleteBatchIds(Arrays.asList(expirationIds)) > 0;
     }
 }

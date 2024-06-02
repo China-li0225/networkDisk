@@ -42,7 +42,7 @@ public class SysOssVo {
     /**
      * 文件大小
      */
-    private Long fileSize;
+    private Double fileSize;
 
     /**
      * 创建时间

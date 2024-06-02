@@ -49,7 +49,7 @@ public class NetworkdiskUserFilestorageVo implements Serializable {
      * 文件大小
      */
     @ExcelProperty(value = "文件大小")
-    private Long fileSize;
+    private Double fileSize;
 
     /**
      * 原名

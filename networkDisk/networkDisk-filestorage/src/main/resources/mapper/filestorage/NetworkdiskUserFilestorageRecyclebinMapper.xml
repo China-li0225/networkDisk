@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="fileName" column="file_name"/>
         <result property="originalName" column="original_name"/>
         <result property="fileSuffix" column="file_suffix"/>
+        <result property="fileSize" column="file_size"/>
         <result property="url" column="url"/>
         <result property="fileExpirationDate" column="file_expiration_date"/>
         <result property="createTime" column="create_time"/>

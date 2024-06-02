@@ -36,7 +36,7 @@ public class SysOssBo extends BaseEntity {
     /**
      * 文件大小
      */
-    private Long fileSize;
+    private Double fileSize;
 
     /**
      * URL地址

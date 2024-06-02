@@ -49,4 +49,6 @@ public interface INetworkdiskUserFilestorageService {
     Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid);
 
     void fileDownload(Long filestorageId, HttpServletResponse response) throws IOException;
+
+    Boolean removeToRecyclebin(Long[] filestorageIds);
 }
