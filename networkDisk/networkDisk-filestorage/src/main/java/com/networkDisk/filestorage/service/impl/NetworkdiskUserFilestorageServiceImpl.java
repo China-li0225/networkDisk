@@ -1,12 +1,15 @@
 package com.networkDisk.filestorage.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
+import com.google.api.client.util.SecurityUtils;
 import com.networkDisk.common.utils.StringUtils;
 import com.networkDisk.common.core.page.TableDataInfo;
 import com.networkDisk.common.core.domain.PageQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.networkDisk.system.service.ISysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.networkDisk.filestorage.domain.bo.NetworkdiskUserFilestorageBo;
@@ -30,6 +33,7 @@ import java.util.Collection;
 public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFilestorageService {
 
     private final NetworkdiskUserFilestorageMapper baseMapper;
+    private final ISysUserService iSysUserService;
 
     /**
      * 查询用户文件存储
@@ -77,6 +81,7 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
     public Boolean insertByBo(NetworkdiskUserFilestorageBo bo) {
         NetworkdiskUserFilestorage add = BeanUtil.toBean(bo, NetworkdiskUserFilestorage.class);
         validEntityBeforeSave(add);
+        add.setUserId(iSysUserService.getSysUser().getUserId());
         boolean flag = baseMapper.insert(add) > 0;
         if (flag) {
             bo.setFilestorageId(add.getFilestorageId());

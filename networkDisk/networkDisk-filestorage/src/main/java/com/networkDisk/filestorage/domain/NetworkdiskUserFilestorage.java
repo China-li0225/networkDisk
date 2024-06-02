@@ -48,6 +48,10 @@ public class NetworkdiskUserFilestorage extends BaseEntity {
      */
     private String fileSuffix;
     /**
+     * 文件后缀名
+     */
+    private Long fileSize;
+    /**
      * URL地址
      */
     private String url;

@@ -103,9 +103,10 @@ public class NetworkdiskUserFilestorageController extends BaseController {
     @SaCheckPermission("filestorage:filestorage:add")
     @Log(title = "用户文件存储", businessType = BusinessType.INSERT)
     @RepeatSubmit()
-    @PostMapping(value = "/uploads",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    @PostMapping(value = "/uploads",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/uploads")
     @Transactional(rollbackFor = Exception.class)
-    public R<Void> add(@RequestPart("files") MultipartFile[] files) {
+    public R<Void> add(@RequestPart(value = "files") MultipartFile[] files) {
         List<NetworkdiskUserFilestorageBo> list = new ArrayList<>();
         //iSysOssService
         for (MultipartFile file: files){
@@ -128,6 +129,7 @@ public class NetworkdiskUserFilestorageController extends BaseController {
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody NetworkdiskUserFilestorageBo bo) {
+        bo.setOriginalName(bo.getOriginalNameNew());
         return toAjax(iNetworkdiskUserFilestorageService.updateByBo(bo));
     }
 

@@ -46,6 +46,12 @@ public class NetworkdiskUserFilestorageVo implements Serializable {
     private String fileName;
 
     /**
+     * 文件大小
+     */
+    @ExcelProperty(value = "文件大小")
+    private Long fileSize;
+
+    /**
      * 原名
      */
     @ExcelProperty(value = "原名")

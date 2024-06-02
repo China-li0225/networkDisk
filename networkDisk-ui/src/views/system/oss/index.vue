@@ -124,21 +124,22 @@
               @header-click="handleHeaderCLick"
               v-if="showTable">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="对象存储主键" align="center" prop="ossId" v-if="false"/>
-      <el-table-column label="文件名" align="center" prop="fileName" />
+<!--      <el-table-column label="对象存储主键" align="center" prop="ossId" v-if="false"/>-->
+<!--      <el-table-column label="文件名" align="center" prop="fileName" />-->
       <el-table-column label="原名" align="center" prop="originalName" />
       <el-table-column label="文件后缀" align="center" prop="fileSuffix" />
-      <el-table-column label="文件展示" align="center" prop="url">
-        <template slot-scope="scope">
-          <ImagePreview
-            v-if="previewListResource && checkFileSuffix(scope.row.fileSuffix)"
-            :width=100 :height=100
-            :src="scope.row.url"
-            :preview-src-list="[scope.row.url]"/>
-          <span v-text="scope.row.url"
-                v-if="!checkFileSuffix(scope.row.fileSuffix) || !previewListResource"/>
-        </template>
-      </el-table-column>
+      <el-table-column label="文件大小" align="center" prop="fileSize" />
+<!--      <el-table-column label="文件展示" align="center" prop="url">-->
+<!--        <template slot-scope="scope">-->
+<!--          <ImagePreview-->
+<!--            v-if="previewListResource && checkFileSuffix(scope.row.fileSuffix)"-->
+<!--            :width=100 :height=100-->
+<!--            :src="scope.row.url"-->
+<!--            :preview-src-list="[scope.row.url]"/>-->
+<!--          <span v-text="scope.row.url"-->
+<!--                v-if="!checkFileSuffix(scope.row.fileSuffix) || !previewListResource"/>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="创建时间" align="center" prop="createTime" width="180"
                        sortable="custom">
         <template slot-scope="scope">

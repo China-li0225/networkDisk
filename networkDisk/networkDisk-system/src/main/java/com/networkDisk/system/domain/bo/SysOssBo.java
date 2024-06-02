@@ -34,6 +34,11 @@ public class SysOssBo extends BaseEntity {
     private String fileSuffix;
 
     /**
+     * 文件大小
+     */
+    private Long fileSize;
+
+    /**
      * URL地址
      */
     private String url;

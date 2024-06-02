@@ -1,5 +1,6 @@
 package com.networkDisk.system.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
@@ -133,8 +134,12 @@ public class SysOssServiceImpl implements ISysOssService, OssService {
 
     @Override
     public SysOssVo upload(MultipartFile file) {
+        SysOss oss = new SysOss();
+
         String originalfileName = file.getOriginalFilename();
         String suffix = StringUtils.substring(originalfileName, originalfileName.lastIndexOf("."), originalfileName.length());
+        Long size = (long) file.getSize()/1024;
+
         OssClient storage = OssFactory.instance();
         UploadResult uploadResult;
         try {
@@ -143,21 +148,24 @@ public class SysOssServiceImpl implements ISysOssService, OssService {
             throw new ServiceException(e.getMessage());
         }
         // 保存文件信息
-        return buildResultEntity(originalfileName, suffix, storage.getConfigKey(), uploadResult);
+        oss.setFileSize(size);
+        return buildResultEntity(originalfileName, suffix, storage.getConfigKey(), uploadResult,oss);
     }
 
     @Override
     public SysOssVo upload(File file) {
+        SysOss oss = new SysOss();
+//        Long size = file.get;
         String originalfileName = file.getName();
         String suffix = StringUtils.substring(originalfileName, originalfileName.lastIndexOf("."), originalfileName.length());
         OssClient storage = OssFactory.instance();
         UploadResult uploadResult = storage.uploadSuffix(file, suffix);
         // 保存文件信息
-        return buildResultEntity(originalfileName, suffix, storage.getConfigKey(), uploadResult);
+        return buildResultEntity(originalfileName, suffix, storage.getConfigKey(), uploadResult,oss);
     }
 
-    private SysOssVo buildResultEntity(String originalfileName, String suffix, String configKey, UploadResult uploadResult) {
-        SysOss oss = new SysOss();
+    private SysOssVo buildResultEntity(String originalfileName, String suffix, String configKey, UploadResult uploadResult,SysOss oss) {
+//        SysOss oss = new SysOss();
         oss.setUrl(uploadResult.getUrl());
         oss.setFileSuffix(suffix);
         oss.setFileName(uploadResult.getFilename());

@@ -46,10 +46,22 @@ public class NetworkdiskUserFilestorageBo extends BaseEntity {
     private String fileName;
 
     /**
+     * 文件大小
+     */
+    @NotBlank(message = "文件大小", groups = { AddGroup.class})
+    private Long fileSize;
+
+    /**
      * 原名
      */
     @NotBlank(message = "原名不能为空", groups = { AddGroup.class, EditGroup.class })
     private String originalName;
+
+    /**
+     * 新名称
+     */
+    @NotBlank(message = "新名称不能为空", groups = {EditGroup.class })
+    private String originalNameNew;
 
     /**
      * 文件后缀名

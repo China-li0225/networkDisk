@@ -1,5 +1,6 @@
 package com.networkDisk.system.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -151,6 +152,14 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     @Override
     public SysUser selectUserByPhonenumber(String phonenumber) {
         return baseMapper.selectUserByPhonenumber(phonenumber);
+    }
+
+    @Override
+    public SysUser getSysUser() {
+        String userId = StpUtil.getLoginId().toString();
+        userId = userId.substring(userId.indexOf(":") + 1);
+        SysUser sysUser = baseMapper.selectUserById(Long.valueOf(userId));
+        return sysUser;
     }
 
     /**

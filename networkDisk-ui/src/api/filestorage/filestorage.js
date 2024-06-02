@@ -19,8 +19,10 @@ export function getFilestorage(filestorageId) {
 
 // 新增用户文件存储
 export function addFilestorage(data) {
+  console.log(data)
+  //提交数据
   return request({
-    url: '/filestorage',
+    url: '/filestorage/uploads',
     method: 'post',
     data: data
   })

@@ -3,6 +3,7 @@ package com.networkDisk.system.service;
 import com.networkDisk.common.core.domain.PageQuery;
 import com.networkDisk.common.core.domain.entity.SysUser;
 import com.networkDisk.common.core.page.TableDataInfo;
+import com.networkDisk.system.domain.SysOss;
 
 import java.util.List;
 
@@ -55,6 +56,12 @@ public interface ISysUserService {
      * @return 用户对象信息
      */
     SysUser selectUserByPhonenumber(String phonenumber);
+
+    /**
+     * 根据token获取用户信息
+     * @return
+     */
+    SysUser getSysUser();
 
     /**
      * 通过用户ID查询用户
@@ -207,5 +214,6 @@ public interface ISysUserService {
      * @return 结果
      */
     int deleteUserByIds(Long[] userIds);
+
 
 }
