@@ -1,10 +1,11 @@
 <div style="height: 10px; clear: both;"></div>
 ## 平台简介
 
-[![GitHub](https://img.shields.io/github/stars/JavaLionLi/RuoYi-Vue-Plus.svg?style=social&label=Stars)](https://github.com/dromara/RuoYi-Vue-Plus)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://gitee.com/dromara/RuoYi-Vue-Plus/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/stars/China-li0225/networkDisk.svg?style=social&label=Stars)](https://github.com/China-li0225/networkDisk)
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://github.com/China-li0225/networkDisk/blob/main/LICENSE.txt)
 <br>
 [![RuoYi-Vue-Plus](https://img.shields.io/badge/RuoYi_Vue_Plus-4.8.2-success.svg)](https://gitee.com/dromara/RuoYi-Vue-Plus)
+[![RuoYi-Vue-Plus_License](https://img.shields.io/badge/RuoYi_Vue_Plus_License-MIT-success.svg)](https://github.com/China-li0225/networkDisk/blob/main/networkDisk/LICENSE)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg)]()
 [![JDK-8+](https://img.shields.io/badge/JDK-8-green.svg)]()
 [![JDK-11](https://img.shields.io/badge/JDK-11-green.svg)]()
@@ -18,7 +19,7 @@
 
 ## 参考文档
 
-使用框架前请仔细阅读文档重点注意事项
+使用框架前请仔细阅读文档重点注意事项(@ruoyi)
 <br>
 >[初始化项目 必看](https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages?sort_id=4164117&doc_id=1469725)
 >>[https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages?sort_id=4164117&doc_id=1469725](https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages?sort_id=4164117&doc_id=1469725)
@@ -32,27 +33,26 @@
 >[参考文档 Wiki](https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages)
 >>[https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages](https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages)
 
-## 软件架构图(ruoyi)
+## 软件架构图(@ruoyi)
 
 ![Plus部署架构图](https://images.gitee.com/uploads/images/2021/1112/202137_673ac5d2_1766278.png "Plus部署架构图.png")
 
 
 ## 作者电子邮箱
     hanyefeng0225@qq.com
-    #意见建议可以通过邮件联系作者
-    https://github.com/China-li0225/networkDisk/blob/main/%E7%B3%BB%E7%BB%9F%E6%BC%94%E7%A4%BA/%E5%9B%9E%E6%94%B6%E7%AB%99.png
-
+    #意见建议以及其他问题可以通过邮件联系作者
+    #如涉及版权问题，敬请联系作者移除
 ## 演示图例（networkDisk）
 
-|                                                            |                                                             |
-| ---------------------------------------------------------- | ----------------------------------------------------------- |
-| ![输入图片说明](http://localhost/static/image/回收站.png)) | ![输入图片说明](http://localhost/static/image/我的文件.png) |
-| ![输入图片说明](http://localhost/static/image/用户组.png)  |                                                             |
+|                                                           |                                                             |
+| --------------------------------------------------------- | ----------------------------------------------------------- |
+| ![输入图片说明](http://localhost/static/image/回收站.png) | ![输入图片说明](http://localhost/static/image/我的文件.png) |
+| ![输入图片说明](http://localhost/static/image/用户组.png) |                                                             |
 
 
 
 
-## 演示图例（ruoyi）
+## 演示图例（@ruoyi）
 
 |                                                                                            |                                                                                            |
 |--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
