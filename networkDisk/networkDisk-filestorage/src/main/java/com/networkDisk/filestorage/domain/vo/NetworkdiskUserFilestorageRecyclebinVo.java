@@ -5,6 +5,8 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import com.networkDisk.common.annotation.ExcelDictFormat;
 import com.networkDisk.common.convert.ExcelDictConvert;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import java.io.Serializable;
@@ -63,17 +65,27 @@ public class NetworkdiskUserFilestorageRecyclebinVo implements Serializable {
     @ExcelProperty(value = "文件后缀名")
     private String fileSuffix;
 
-    /**
-     * URL地址
-     */
-    @ExcelProperty(value = "URL地址")
-    private String url;
+//    /**
+//     * URL地址
+//     */
+//    @ExcelProperty(value = "URL地址")
+//    private String url;
 
     /**
      * 文件回收有效期
      */
     @ExcelProperty(value = "文件回收有效期")
     private Long fileExpirationDate;
+
+    /**
+     * 创建人
+     */
+    private String createBy;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
 
 }

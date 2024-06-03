@@ -139,7 +139,7 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
         //加载回收站文件容量上限，超出后删除更旧的文件
         int fileSizeMax = 100;
         //根据用户级别获取回收站天数上线
-        int fileDayMax = 7;
+        long fileDayMax = 7;
         //数据写入回收站
         List<NetworkdiskUserFilestorageRecyclebin> recyclebin =
             iNetworkdiskUserFilestorageRecyclebinService.queryByuserId(sysUser.getUserId());
@@ -154,6 +154,7 @@ public class NetworkdiskUserFilestorageServiceImpl implements INetworkdiskUserFi
         }
         for (long filestorageId:filestorageIds){
             NetworkdiskUserFilestorageRecyclebinBo bo = BeanUtil.toBean(baseMapper.selectVoById(filestorageId), NetworkdiskUserFilestorageRecyclebinBo.class);
+            bo.setFileExpirationDate(fileDayMax);
             iNetworkdiskUserFilestorageRecyclebinService.insertByBo(bo);
         }
         //删除文件列表数据

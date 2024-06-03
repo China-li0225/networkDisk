@@ -89,6 +89,7 @@ public class NetworkdiskUserFilestorageRecyclebinController extends BaseControll
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody NetworkdiskUserFilestorageRecyclebinBo bo) {
+        bo.setOriginalName(bo.getOriginalNameNew());
         return toAjax(iNetworkdiskUserFilestorageRecyclebinService.updateByBo(bo));
     }
 

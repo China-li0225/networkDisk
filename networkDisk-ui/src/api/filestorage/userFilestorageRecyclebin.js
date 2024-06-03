@@ -38,6 +38,13 @@ export function updateUserFilestorageRecyclebin(data) {
 // 删除用户文件存储
 export function delUserFilestorageRecyclebin(expirationId) {
   return request({
+    url: '/userFilestorageRecyclebin/delete/' + expirationId,
+    method: 'delete'
+  })
+}
+// 恢复用户文件存储
+export function recoverUserFilestorageRecyclebin(expirationId) {
+  return request({
     url: '/userFilestorageRecyclebin/' + expirationId,
     method: 'delete'
   })

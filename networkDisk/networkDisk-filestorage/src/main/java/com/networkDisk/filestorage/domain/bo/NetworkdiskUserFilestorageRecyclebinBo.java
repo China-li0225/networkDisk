@@ -59,6 +59,12 @@ public class NetworkdiskUserFilestorageRecyclebinBo extends BaseEntity {
     private String originalName;
 
     /**
+     * 新名称
+     */
+    @NotBlank(message = "新名称", groups = { EditGroup.class })
+    private String originalNameNew;
+
+    /**
      * 文件后缀名
      */
     @NotBlank(message = "文件后缀名不能为空", groups = { AddGroup.class, EditGroup.class })
@@ -73,7 +79,7 @@ public class NetworkdiskUserFilestorageRecyclebinBo extends BaseEntity {
     /**
      * URL地址
      */
-    @NotBlank(message = "URL地址不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "URL地址不能为空", groups = { AddGroup.class})
     private String url;
 
     /**

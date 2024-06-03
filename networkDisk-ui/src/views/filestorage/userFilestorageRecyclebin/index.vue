@@ -1,70 +1,70 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="文件存储主键" prop="filestorageId">
-        <el-input
-          v-model="queryParams.filestorageId"
-          placeholder="请输入文件存储主键"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="用户id" prop="userId">
-        <el-input
-          v-model="queryParams.userId"
-          placeholder="请输入用户id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="镜像存储id" prop="ossId">
-        <el-input
-          v-model="queryParams.ossId"
-          placeholder="请输入镜像存储id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="文件名" prop="fileName">
-        <el-input
-          v-model="queryParams.fileName"
-          placeholder="请输入文件名"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="原名" prop="originalName">
+<!--      <el-form-item label="文件存储主键" prop="filestorageId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.filestorageId"-->
+<!--          placeholder="请输入文件存储主键"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="用户id" prop="userId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.userId"-->
+<!--          placeholder="请输入用户id"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="镜像存储id" prop="ossId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.ossId"-->
+<!--          placeholder="请输入镜像存储id"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="文件名" prop="fileName">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.fileName"-->
+<!--          placeholder="请输入文件名"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+      <el-form-item label="文件名称" prop="originalName">
         <el-input
           v-model="queryParams.originalName"
-          placeholder="请输入原名"
+          placeholder="请输入文件名称"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="文件后缀名" prop="fileSuffix">
+      <el-form-item label="文件类型" prop="fileSuffix">
         <el-input
           v-model="queryParams.fileSuffix"
-          placeholder="请输入文件后缀名"
+          placeholder="请输入文件类型"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="URL地址" prop="url">
-        <el-input
-          v-model="queryParams.url"
-          placeholder="请输入URL地址"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="文件回收有效期" prop="fileExpirationDate">
-        <el-input
-          v-model="queryParams.fileExpirationDate"
-          placeholder="请输入文件回收有效期"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+<!--      <el-form-item label="URL地址" prop="url">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.url"-->
+<!--          placeholder="请输入URL地址"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="文件回收有效期" prop="fileExpirationDate">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.fileExpirationDate"-->
+<!--          placeholder="请输入文件回收有效期"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -72,16 +72,16 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['filestorage:userFilestorageRecyclebin:add']"
-        >新增</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="primary"-->
+<!--          plain-->
+<!--          icon="el-icon-plus"-->
+<!--          size="mini"-->
+<!--          @click="handleAdd"-->
+<!--          v-hasPermi="['filestorage:userFilestorageRecyclebin:add']"-->
+<!--        >新增</el-button>-->
+<!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
           type="success"
@@ -91,7 +91,7 @@
           :disabled="single"
           @click="handleUpdate"
           v-hasPermi="['filestorage:userFilestorageRecyclebin:edit']"
-        >修改</el-button>
+        >重命名</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -103,6 +103,17 @@
           @click="handleDelete"
           v-hasPermi="['filestorage:userFilestorageRecyclebin:remove']"
         >删除</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="danger"
+          plain
+          icon="el-icon-delete"
+          size="mini"
+          :disabled="multiple"
+          @click="handlerecover"
+          v-hasPermi="['filestorage:userFilestorageRecyclebin:remove']"
+        >恢复</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -119,15 +130,20 @@
 
     <el-table v-loading="loading" :data="userFilestorageRecyclebinList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="回收站主键" align="center" prop="expirationId" v-if="true"/>
-      <el-table-column label="文件存储主键" align="center" prop="filestorageId" />
-      <el-table-column label="用户id" align="center" prop="userId" />
-      <el-table-column label="镜像存储id" align="center" prop="ossId" />
-      <el-table-column label="文件名" align="center" prop="fileName" />
-      <el-table-column label="原名" align="center" prop="originalName" />
-      <el-table-column label="文件后缀名" align="center" prop="fileSuffix" />
-      <el-table-column label="URL地址" align="center" prop="url" />
-      <el-table-column label="文件回收有效期" align="center" prop="fileExpirationDate" />
+<!--      <el-table-column label="回收站主键" align="center" prop="expirationId" v-if="true"/>-->
+<!--      <el-table-column label="文件存储主键" align="center" prop="filestorageId" />-->
+<!--      <el-table-column label="用户id" align="center" prop="userId" />-->
+<!--      <el-table-column label="镜像存储id" align="center" prop="ossId" />-->
+      <el-table-column label="文件名" align="center" prop="originalName" />
+<!--      <el-table-column label="原名" align="center" prop="originalName" />-->
+      <el-table-column label="文件类型" align="center" prop="fileSuffix" />
+<!--      <el-table-column label="URL地址" align="center" prop="url" />-->
+      <el-table-column label="文件回收有效期(天)" align="center" prop="fileExpirationDate" />
+      <el-table-column label="进入回收站时间" align="center" prop="createTime" />
+<!--      <el-table-column label="剩余(天)" align="center" prop="fileExpirationDate" >-->
+<!--        <template slot-scope="scope">{{handlelastday(scope.row)}}-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -136,7 +152,14 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['filestorage:userFilestorageRecyclebin:edit']"
-          >修改</el-button>
+          >重命名</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-delete"
+            @click="handlerecover(scope.row)"
+            v-hasPermi="['filestorage:userFilestorageRecyclebin:remove']"
+          >恢复</el-button>
           <el-button
             size="mini"
             type="text"
@@ -159,30 +182,30 @@
     <!-- 添加或修改用户文件存储对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="文件存储主键" prop="filestorageId">
-          <el-input v-model="form.filestorageId" placeholder="请输入文件存储主键" />
-        </el-form-item>
-        <el-form-item label="用户id" prop="userId">
-          <el-input v-model="form.userId" placeholder="请输入用户id" />
-        </el-form-item>
-        <el-form-item label="镜像存储id" prop="ossId">
-          <el-input v-model="form.ossId" placeholder="请输入镜像存储id" />
-        </el-form-item>
-        <el-form-item label="文件名" prop="fileName">
-          <el-input v-model="form.fileName" placeholder="请输入文件名" />
-        </el-form-item>
+<!--        <el-form-item label="文件存储主键" prop="filestorageId">-->
+<!--          <el-input v-model="form.filestorageId" placeholder="请输入文件存储主键" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="用户id" prop="userId">-->
+<!--          <el-input v-model="form.userId" placeholder="请输入用户id" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="镜像存储id" prop="ossId">-->
+<!--          <el-input v-model="form.ossId" placeholder="请输入镜像存储id" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="文件名" prop="fileName">-->
+<!--          <el-input v-model="form.fileName" placeholder="请输入文件名" />-->
+<!--        </el-form-item>-->
         <el-form-item label="原名" prop="originalName">
           <el-input v-model="form.originalName" placeholder="请输入原名" />
         </el-form-item>
-        <el-form-item label="文件后缀名" prop="fileSuffix">
-          <el-input v-model="form.fileSuffix" placeholder="请输入文件后缀名" />
+        <el-form-item label="新名称" prop="fileSuffix">
+          <el-input v-model="form.originalNameNew" placeholder="请输入文件后缀名" />
         </el-form-item>
-        <el-form-item label="URL地址" prop="url">
-          <el-input v-model="form.url" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="文件回收有效期" prop="fileExpirationDate">
-          <el-input v-model="form.fileExpirationDate" placeholder="请输入文件回收有效期" />
-        </el-form-item>
+<!--        <el-form-item label="URL地址" prop="url">-->
+<!--          <el-input v-model="form.url" type="textarea" placeholder="请输入内容" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="文件回收有效期" prop="fileExpirationDate">-->
+<!--          <el-input v-model="form.fileExpirationDate" placeholder="请输入文件回收有效期" />-->
+<!--        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button :loading="buttonLoading" type="primary" @click="submitForm">确 定</el-button>
@@ -193,7 +216,14 @@
 </template>
 
 <script>
-import { listUserFilestorageRecyclebin, getUserFilestorageRecyclebin, delUserFilestorageRecyclebin, addUserFilestorageRecyclebin, updateUserFilestorageRecyclebin } from "@/api/filestorage/userFilestorageRecyclebin";
+import {
+  listUserFilestorageRecyclebin,
+  getUserFilestorageRecyclebin,
+  delUserFilestorageRecyclebin,
+  addUserFilestorageRecyclebin,
+  updateUserFilestorageRecyclebin,
+  recoverUserFilestorageRecyclebin
+} from "@/api/filestorage/userFilestorageRecyclebin";
 
 export default {
   name: "UserFilestorageRecyclebin",
@@ -293,6 +323,7 @@ export default {
         ossId: undefined,
         fileName: undefined,
         originalName: undefined,
+        originalNameNew: undefined,
         fileSuffix: undefined,
         url: undefined,
         fileExpirationDate: undefined,
@@ -372,6 +403,21 @@ export default {
         this.loading = false;
         this.getList();
         this.$modal.msgSuccess("删除成功");
+      }).catch(() => {
+      }).finally(() => {
+        this.loading = false;
+      });
+    },
+    /** 恢复按钮操作 */
+    handlerecover(row) {
+      const expirationIds = row.expirationId || this.ids;
+      this.$modal.confirm('是否确认恢复用户文件存储编号为"' + expirationIds + '"的数据项？').then(() => {
+        this.loading = true;
+        return recoverUserFilestorageRecyclebin(expirationIds);
+      }).then(() => {
+        this.loading = false;
+        this.getList();
+        this.$modal.msgSuccess("恢复成功");
       }).catch(() => {
       }).finally(() => {
         this.loading = false;
