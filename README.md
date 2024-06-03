@@ -40,8 +40,16 @@
 ## 作者电子邮箱
     hanyefeng0225@qq.com
     #意见建议可以通过邮件联系作者
+    https://github.com/China-li0225/networkDisk/blob/main/%E7%B3%BB%E7%BB%9F%E6%BC%94%E7%A4%BA/%E5%9B%9E%E6%94%B6%E7%AB%99.png
 
 ## 演示图例（networkDisk）
+
+|                                                            |                                                             |
+| ---------------------------------------------------------- | ----------------------------------------------------------- |
+| ![输入图片说明](http://localhost/static/image/回收站.png)) | ![输入图片说明](http://localhost/static/image/我的文件.png) |
+| ![输入图片说明](http://localhost/static/image/用户组.png)  |                                                             |
+
+
 
 
 ## 演示图例（ruoyi）
