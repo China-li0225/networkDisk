@@ -2,18 +2,18 @@
   <div class="app-container home">
     <el-row :gutter="20">
       <el-col :sm="24" :lg="12" style="padding-left: 20px">
-        <h2>RuoYi-Vue-Plus后台管理框架</h2>
+        <h2>networkDisk</h2>
         <p>
-          RuoYi-Vue-Plus 是基于 RuoYi-Vue 针对 分布式集群 场景升级(不兼容原框架)
+          networkDisk 是基于 RuoYi-Vue-plus 的延伸，根据云存储业务开发
           <br/>
           * 前端开发框架 Vue、Element UI<br/>
           * 后端开发框架 Spring Boot<br/>
           * 容器框架 Undertow 基于 XNIO 的高性能容器<br/>
           * 权限认证框架 Sa-Token、Jwt 支持多终端认证系统<br/>
           * 关系数据库 MySQL 适配 8.X 最低 5.7<br/>
-          * 关系数据库 Oracle 适配 11g 12c<br/>
-          * 关系数据库 PostgreSQL 适配 13 14<br/>
-          * 关系数据库 SQLServer 适配 2017 2019<br/>
+<!--          * 关系数据库 Oracle 适配 11g 12c<br/>-->
+<!--          * 关系数据库 PostgreSQL 适配 13 14<br/>-->
+<!--          * 关系数据库 SQLServer 适配 2017 2019<br/>-->
           * 缓存数据库 Redis 适配 6.X 最低 4.X<br/>
           * 数据库框架 Mybatis-Plus 快速 CRUD 增加开发效率<br/>
           * 数据库框架 p6spy 更强劲的 SQL 分析<br/>
@@ -43,30 +43,28 @@
           <el-tag type="danger">&yen;免费开源</el-tag>
         </p>
         <p>
+<!--          <el-button-->
+<!--            type="primary"-->
+<!--            size="mini"-->
+<!--            icon="el-icon-cloudy"-->
+<!--            plain-->
+<!--            @click="goTarget('https://gitee.com/dromara/networkDisk')"-->
+<!--            >访问码云</el-button-->
+<!--          >-->
           <el-button
             type="primary"
             size="mini"
             icon="el-icon-cloudy"
             plain
-            @click="goTarget('https://gitee.com/dromara/RuoYi-Vue-Plus')"
-            >访问码云</el-button
-          >
-          <el-button
-            type="primary"
-            size="mini"
-            icon="el-icon-cloudy"
-            plain
-            @click="goTarget('https://github.com/dromara/RuoYi-Vue-Plus')"
-          >访问GitHub</el-button
-          >
-          <el-button
-            type="primary"
-            size="mini"
-            icon="el-icon-cloudy"
-            plain
-            @click="goTarget('https://gitee.com/dromara/RuoYi-Vue-Plus/wikis/pages?sort_id=4106467&doc_id=1469725')"
-          >更新日志</el-button
-          >
+            @click="goTarget('https://github.com/China-li0225/networkDisk')"
+          >访问GitHub</el-button>
+<!--          <el-button-->
+<!--            type="primary"-->
+<!--            size="mini"-->
+<!--            icon="el-icon-cloudy"-->
+<!--            plain-->
+<!--            @click="goTarget('https://gitee.com/dromara/networkDisk/wikis/pages?sort_id=4106467&doc_id=1469725')"-->
+<!--          >更新日志</el-button>-->
         </p>
       </el-col>
 

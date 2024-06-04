@@ -1,7 +1,7 @@
 {
-  "name": "ruoyi-vue-plus",
+  "name": "networkDisk",
   "version": "4.8.2",
-  "description": "RuoYi-Vue-Plus后台管理系统",
+  "description": "networkDisk",
   "author": "LionLi",
   "license": "MIT",
   "scripts": {
@@ -32,7 +32,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/dromara/RuoYi-Vue-Plus.git"
+    "url": "https://gitee.com/dromara/networkDisk.git"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.4.0",
