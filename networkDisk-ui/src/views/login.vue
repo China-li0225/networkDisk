@@ -56,11 +56,11 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-<!--      <span>Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</span><br/>-->
-      <a href="" target="_blank">Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</a>
+      <span>Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</span><br/>
+<!--      <a href="" target="_blank">Copyright © 2024-2025 china-li0225 All Rights Reserved.</a>-->
       <a href="https://beian.mps.gov.cn/#/query/webSearch?code=13028302000231" target="_blank">|冀公网安备13028302000231号</a>
       <a href="https://beian.miit.gov.cn/" target="_blank">|冀ICP备2024055415号</a>
-      <a href="https://beian.miit.gov.cn/" target="_blank">|代理域名注册服务机构：烟台帝思普网络科技有限公司</a>
+      <a href="" target="_blank">|代理域名注册服务机构：烟台帝思普网络科技有限公司</a>
     </div>
   </div>
 </template>
