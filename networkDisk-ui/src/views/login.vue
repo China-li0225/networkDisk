@@ -56,7 +56,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</span><br/>
+      <span>Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</span>
 <!--      <a href="" target="_blank">Copyright © 2024-2025 china-li0225 All Rights Reserved.</a>-->
       <a href="https://beian.mps.gov.cn/#/query/webSearch?code=13028302000231" target="_blank">|冀公网安备13028302000231号</a>
       <a href="https://beian.miit.gov.cn/" target="_blank">|冀ICP备2024055415号</a>
@@ -95,7 +95,7 @@ export default {
       // 验证码开关
       captchaEnabled: true,
       // 注册开关
-      register: false,
+      register: true,
       redirect: undefined
     };
   },
