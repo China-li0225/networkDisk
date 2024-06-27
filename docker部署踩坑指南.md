@@ -18,4 +18,4 @@
 
 docker run --ulimit nofile=1024 -d -p 8080:8080 networkadmin:latest
 
-实际上centos9默认的ulimit 大小是1024，不生效的原因位置，根据百度的查询结果来看，貌似和docker拥有的权限有关，docker默认无法读取到ulimit 信息
+实际上centos9默认的ulimit 大小是1024，不生效的原因未知，根据百度的查询结果来看，貌似和docker拥有的权限有关，docker默认无法读取到ulimit 信息

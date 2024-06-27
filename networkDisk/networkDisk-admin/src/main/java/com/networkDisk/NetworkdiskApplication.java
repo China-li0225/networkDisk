@@ -18,7 +18,7 @@ public class NetworkdiskApplication {
         SpringApplication application = new SpringApplication(NetworkdiskApplication.class);
         application.setApplicationStartup(new BufferingApplicationStartup(2048));
         application.run(args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  Networkdisk-Vue-Plus启动成功   ლ(´ڡ`ლ)ﾞ");
+        System.out.println("(♥◠‿◠)ﾉﾞ  Networkdisk启动成功   ლ(´ڡ`ლ)ﾞ");
     }
 
 }
